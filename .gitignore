@@ -4,4 +4,7 @@
 !CLAUDE.md
 !README.md
 !LICENSE
+!.github
+!.github/workflows
+!.github/workflows/tests.yml
 !.gitignore
