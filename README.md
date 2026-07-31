@@ -3,6 +3,7 @@
 [![Tests](https://github.com/jcb223-star/port-scanner/actions/workflows/tests.yml/badge.svg)](https://github.com/jcb223-star/port-scanner/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3](https://img.shields.io/badge/python-3-blue.svg)](https://www.python.org/downloads/)
+[![codecov](https://codecov.io/gh/jcb223-star/port-scanner/branch/master/graph/badge.svg)](https://codecov.io/gh/jcb223-star/port-scanner)
 
 A simple multithreaded TCP port scanner, for authorized security testing on hosts you own or have explicit permission to test.
 
