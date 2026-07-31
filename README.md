@@ -1,6 +1,7 @@
 # port-scanner
 
 [![Tests](https://github.com/jcb223-star/port-scanner/actions/workflows/tests.yml/badge.svg)](https://github.com/jcb223-star/port-scanner/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A simple multithreaded TCP port scanner, for authorized security testing on hosts you own or have explicit permission to test.
 
