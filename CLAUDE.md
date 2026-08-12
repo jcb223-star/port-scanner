@@ -47,9 +47,10 @@ python3 -m pytest test_port_scanner.py -v
 
 ### ML pipeline files
 
-`feature_engineer.py`, `advanced_trainer.py`, and `app.py` have no `requirements.txt`, tests, or CI coverage yet, and depend on third-party packages not needed by `port_scanner.py`: `pandas`, `numpy`, `scikit-learn`, `optuna`, `xgboost`, `joblib`, `fastapi`, `pydantic`, `uvicorn`. Each file's `__main__`/example block is runnable standalone against synthetic data once those are installed, e.g.:
+`feature_engineer.py`, `advanced_trainer.py`, and `app.py` have their own `requirements.txt` (deps not needed by `port_scanner.py`, which stays stdlib-only) but no tests or CI coverage yet. Install and run each file's `__main__`/example block standalone against synthetic data:
 
 ```bash
+pip install -r requirements.txt
 python3 feature_engineer.py       # fits/transforms a small dummy DataFrame
 python3 advanced_trainer.py       # trains on sklearn's make_classification, saves artifacts/model_pipeline.pkl
 python3 app.py                    # serves the saved pipeline via uvicorn on :8000 (needs artifacts/model_pipeline.pkl first)
