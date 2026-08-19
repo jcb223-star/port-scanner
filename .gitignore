@@ -5,6 +5,9 @@
 !advanced_trainer.py
 !app.py
 !requirements.txt
+!test_feature_engineer.py
+!test_advanced_trainer.py
+!test_app.py
 !CLAUDE.md
 !README.md
 !LICENSE

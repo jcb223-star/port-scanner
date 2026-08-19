@@ -3,7 +3,7 @@ import pandas as pd
 from pathlib import Path
 from typing import Optional
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from contextlib import asynccontextmanager
 
 # Global dictionary to store the model artifact upon startup
@@ -40,15 +40,15 @@ app = FastAPI(
 
 # Define Pydantic schema matching your input feature names and data types
 class ModelInput(BaseModel):
-    age: float = Field(..., description="Age of the individual", example=25.0)
-    salary: float = Field(..., description="Annual salary", example=65000.0)
-    score_a: float = Field(..., description="Metric score A", example=0.85)
-    score_b: float = Field(..., description="Metric score B", example=1.23)
-    tenure: float = Field(..., description="Job tenure in years", example=3.0)
-    department: str = Field(..., description="Department name", example="IT")
+    age: float = Field(..., description="Age of the individual")
+    salary: float = Field(..., description="Annual salary")
+    score_a: float = Field(..., description="Metric score A")
+    score_b: float = Field(..., description="Metric score B")
+    tenure: float = Field(..., description="Job tenure in years")
+    department: str = Field(..., description="Department name")
 
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "age": 29.0,
                 "salary": 72000.0,
@@ -58,6 +58,7 @@ class ModelInput(BaseModel):
                 "department": "Finance"
             }
         }
+    )
 
 class ModelOutput(BaseModel):
     prediction: int = Field(..., description="Predicted class label (0 or 1)")

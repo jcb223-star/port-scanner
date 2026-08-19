@@ -47,11 +47,15 @@ python3 -m pytest test_port_scanner.py -v
 
 ### ML pipeline files
 
-`feature_engineer.py`, `advanced_trainer.py`, and `app.py` have their own `requirements.txt` (deps not needed by `port_scanner.py`, which stays stdlib-only) but no tests or CI coverage yet. Install and run each file's `__main__`/example block standalone against synthetic data:
+`feature_engineer.py`, `advanced_trainer.py`, and `app.py` have their own `requirements.txt` (deps not needed by `port_scanner.py`, which stays stdlib-only). Install it, then either run each file's `__main__`/example block standalone against synthetic data, or run the test suite:
 
 ```bash
 pip install -r requirements.txt
 python3 feature_engineer.py       # fits/transforms a small dummy DataFrame
 python3 advanced_trainer.py       # trains on sklearn's make_classification, saves artifacts/model_pipeline.pkl
 python3 app.py                    # serves the saved pipeline via uvicorn on :8000 (needs artifacts/model_pipeline.pkl first)
+
+python3 -m pytest test_feature_engineer.py test_advanced_trainer.py test_app.py -v
 ```
+
+`test_feature_engineer.py` and `test_advanced_trainer.py` run the real scikit-learn/Optuna/XGBoost code against small synthetic datasets (no mocking) — `test_advanced_trainer.py` runs actual Optuna trials (`n_trials=2`) so it's the slowest file, but still just a few seconds given the tiny dataset size. `test_app.py` uses FastAPI's `TestClient` with `joblib.load` patched to inject a fake pipeline, so it never touches a real `artifacts/model_pipeline.pkl`. CI installs `requirements.txt` and runs all four test files together (`.github/workflows/tests.yml`).
