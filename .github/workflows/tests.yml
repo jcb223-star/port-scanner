@@ -8,13 +8,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.x"
       - run: pip install -r requirements.txt pytest pytest-cov
       - run: python -m pytest test_port_scanner.py test_feature_engineer.py test_advanced_trainer.py test_app.py -v --cov=port_scanner --cov=feature_engineer --cov=advanced_trainer --cov=app --cov-report=xml
-      - uses: codecov/codecov-action@v4
+      - uses: codecov/codecov-action@v7
         with:
           files: ./coverage.xml
           fail_ci_if_error: false
