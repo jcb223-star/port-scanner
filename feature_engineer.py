@@ -46,7 +46,7 @@ class FeatureEngineer(BaseEstimator, TransformerMixin):
 
         # Automatically identify column types
         self.numeric_cols = X_transformed.select_dtypes(include=['int64', 'float64']).columns.tolist()
-        self.categorical_cols = X_transformed.select_dtypes(include=['object', 'category', 'bool']).columns.tolist()
+        self.categorical_cols = X_transformed.select_dtypes(include=['object', 'str', 'category', 'bool']).columns.tolist()
 
         # Define preprocessing for numeric data (Impute missing + Scale)
         numeric_transformer = Pipeline(steps=[
